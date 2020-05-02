@@ -31,7 +31,7 @@ int main() {
 							  10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
 
 	std::cout << "Enter integer coordinates of points [" << size << "]:" << std::endl;
-	enter_array(coord, size, 0, size);
+	enter_array_cin(coord, size, 0, size);
 
 	struct pair_of_points farthest_points = calculate_the_farthest(coord, size);
 

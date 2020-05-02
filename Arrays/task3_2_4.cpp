@@ -36,7 +36,7 @@ int main() {
 	double array [size] = {0};
 
 	std::cout << "Enter " << size << " real elements of array." << std::endl;
-	enter_array(array, size, 0, size);
+	enter_array_cin(array, size, 0, size);
 
 	std::cout << "Amount of negative elements in the array is: " << amount_negative_elements_array(array, size);
 	std::cout << std::endl;

@@ -6,12 +6,12 @@ int main() {
 			 	 		  10, 11, 12, 13, 14, 15, 16, 17, 18, 19}; */
 
 	std::cout << "Enter real array [" << size << "]:" << std::endl;
-	enter_array(array, size, 0, size);
+	enter_array_cin(array, size, 0, size);
 	insertion_sort_ascending(array, size, 0, size / 2);
 	bubble_sort_descending(array, size, (size / 2), size);
 
 	std::cout<< std::endl << "Sorted array:" << std::endl;
-	print_array(array, size, 0, size);
+	print_array_cout(array, size, 0, size);
 
 	return 0;
 }

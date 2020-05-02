@@ -9,14 +9,14 @@ int main() {
 	int array[size] = {0};
 
 	std::cout << "Enter real array [" << size << "]:" << std::endl;
-	enter_array(array,size, 0, size);
+	enter_array_cin(array,size, 0, size);
 
-	my_swap_array(array, size,
-				  max_array(array, size, 0, size / 2),
-				  min_array(array, size, (size / 2) + 1, size));
+	swap_element_array(array, size, 
+					   max_array(array, size, 0, size / 2),
+					   min_array(array, size, (size / 2) + 1, size));
 
 	std::cout << "Array after swap" << std::endl;
-	print_array(array, size, 0, size);
+	print_array_cout(array, size, 0, size);
 
 	return 0;
 }

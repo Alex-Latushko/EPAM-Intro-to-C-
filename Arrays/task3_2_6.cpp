@@ -5,7 +5,7 @@ int main() {
 	int array[size] = {0}; //, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 	std::cout << "Enter " << size << " elements of array." << std::endl;
-	enter_array(array, size, 0, size);
+	enter_array_cin(array, size, 0, size);
 
 	int position = 0;
 	int new_value = 0;
@@ -20,7 +20,7 @@ int main() {
 
 	right_shift_array(array, size, position);
 	array[position] = new_value;
-	print_array(array, size, 0, size);
+	print_array_cout(array, size, 0, size);
 
 	return 0;
 }

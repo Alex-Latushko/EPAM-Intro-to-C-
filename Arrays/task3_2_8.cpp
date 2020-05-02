@@ -5,7 +5,7 @@ int main() {
 	int array [size] = {0}; //, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
 	std::cout << "Enter integer array [" << size << "]:" << std::endl;
-	enter_array(array, size, 0, size);
+	enter_array_cin(array, size, 0, size);
 
 	int pos1 = 0;
 	int pos2 = 0;
@@ -20,9 +20,9 @@ int main() {
 	std::cin >> pos2;
 	} while ( !is_in_range(size - 1, pos2) );
 
-	my_swap_array(array, size, pos1, pos2);
+	swap_element_array(array, size, pos1, pos2);
 	std::cout << "Position " << pos1 << " and " << pos2 << " are swapped!" << std::endl;
-	print_array(array, size, 0, size);
+	print_array_cout(array, size, 0, size);
 
 	return 0;
 }

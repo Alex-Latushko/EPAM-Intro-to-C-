@@ -4,27 +4,15 @@
 #define SIZE_2 2
 
 template <typename T>
-void safe_array_input(T array[][SIZE], int i, int j){
-	std::cin >> array[i][j];
-	while (std::cin.fail()) {
+bool valid_input_cin(T& x){
+	bool valid_input = true;
+	std::cin >> x;
+	if (std::cin.fail()) {
 		std::cin.clear();
 		std::cin.ignore(100, '\n');
-		std::cout << "[" << i << "][ "<< j <<"] = ";
-		std::cin >> array[i][j];
+		valid_input = false;
 	}
-	std::cin.ignore(100, '\n');
-}
-
-template <typename T>
-void safe_array_input_SIZE_2(T array[][SIZE_2], int i, int j){
-	std::cin >> array[i][j];
-	while (std::cin.fail()) {
-		std::cin.clear();
-		std::cin.ignore(100, '\n');
-		std::cout << "[" << i << "][ "<< j <<"] = ";
-		std::cin >> array[i][j];
-	}
-	std::cin.ignore(100, '\n');
+	return valid_input;
 }
 
 template <typename T>
@@ -32,8 +20,9 @@ void enter_array_cin(T array[][SIZE], size_t size_i, size_t size_j ){
 
 	for (size_t i = 0; i < size_i; ++i){
 		for (size_t j = 0; j < size_j; ++j){
+			do {
 			std::cout << "[" << i << "]["<< j <<"] = ";
-			safe_array_input(array, i, j);
+			} while ( !valid_input_cin(array[i][j]) );
 		}
 	}
 }
@@ -43,8 +32,9 @@ void enter_array_SIZE_2_cin(T array[][SIZE_2], size_t size_i, size_t size_j ){
 
 	for (size_t i = 0; i < size_i; ++i){
 		for (size_t j = 0; j < size_j; ++j){
+			do {
 			std::cout << "[" << i << "]["<< j <<"] = ";
-			safe_array_input_SIZE_2(array, i, j);
+			} while ( !valid_input_cin(array[i][j]) );
 		}
 	}
 }
