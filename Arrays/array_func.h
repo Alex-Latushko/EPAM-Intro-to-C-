@@ -79,6 +79,8 @@ bool valid_input_cin(T& x){
 		std::cin.clear();
 		std::cin.ignore(100, '\n');
 		valid_input = false;
+	} else {
+		std::cin.ignore(100, '\n');
 	}
 	return valid_input;
 }
