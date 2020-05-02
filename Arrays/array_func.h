@@ -18,9 +18,6 @@ template <typename T>
 bool valid_input_cin(T& x);
 
 template <typename T>
-void safe_array_input_cin(T array[], int i);
-
-template <typename T>
 void enter_array_cin(T* array, size_t size, int begin, int end);
 
 template <typename T>
