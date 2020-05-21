@@ -2,12 +2,12 @@
 #include <stdio.h>
 
 void fraction_reducing(int& num, int& denum){
-	int negative = 1;
+	int sign = 1;
 	if (num < 0){
-		negative = -1;
+		sign = -1;
 	}
-	for (int i = 2; i <= (negative * num); ++i){
-		if (((negative * num) % i == 0) && (denum % i == 0)){
+	for (int i = 2; i <= (sign * num); ++i){
+		if (((sign * num) % i == 0) && (denum % i == 0)){
 			fraction_reducing( num /= i , denum /= i);
 		}
 	}
@@ -37,17 +37,7 @@ void divide_fraction(int n1, int dn1, int n2, int dn2, int& n_res, int& dn_res){
 	multipl_fraction(n1, dn1, dn2, n2, n_res, dn_res);
 }
 
-void print_result(int n1, int dn1, int n2, int dn2, int& n_res, int& dn_res, char action){
-	switch (action) {
-	case '+': add_fraction(n1, dn1, n2, dn2, n_res, dn_res);
-			  break;
-	case '-': substr_fraction(n1, dn1, n2, dn2, n_res, dn_res);
-			  break;
-	case '*': multipl_fraction(n1, dn1, n2, dn2, n_res, dn_res);
-			  break;
-	case '/': divide_fraction(n1, dn1, n2, dn2, n_res, dn_res);
-			  break;
-	}
+void print_result(int n1, int dn1, int n2, int dn2, int n_res, int dn_res, char action){
 	printf("(%d/%d) %c (%d/%d) = (%d/%d)\n", n1, dn1, action, n2, dn2, n_res, dn_res);
 }
 

@@ -5,12 +5,12 @@ fraction::fraction(int x, int  y) : numerator(x), denominator(y){
 }
 
 void fraction::fraction_reducing(){
-	int negative = 1;
+	int sign = 1;
 	if (numerator < 0){
-		negative = -1;
+		sign = -1;
 	}
-	for (int i = 2; i <= (negative * numerator); ++i){
-		if (((negative * numerator) % i == 0) && (denominator % i == 0)){
+	for (int i = 2; i <= (sign * numerator); ++i){
+		if (((sign * numerator) % i == 0) && (denominator % i == 0)){
 			numerator /= i;
 			denominator /= i;
 			fraction_reducing();
@@ -33,11 +33,11 @@ fraction fraction::multipl_fraction(const fraction& rh) const{
 }
 
 fraction fraction::divide_fraction(const fraction& rh) const{
-	int negative = 1;
+	int sign = 1;
 	if (rh.numerator < 0){
-		negative = -1;
+		sign = -1;
 	}
-	return ( multipl_fraction( fraction{negative * rh.denominator, negative * rh.numerator}) );
+	return ( multipl_fraction( fraction{sign * rh.denominator, sign * rh.numerator}) );
 }
 
 void fraction::print_result(const fraction& rh, char action) const{
