@@ -17,6 +17,8 @@ class fraction{
 
 	int get_numerator() const;
 	int get_denominator() const;
+	void set_numerator(int x);
+	void set_denominator(int x);
 };
 
 std::ostream& operator<<(std::ostream& os,const fraction& fr);

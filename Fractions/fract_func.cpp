@@ -1,15 +1,14 @@
 #include "fract_func.h"
 #include <stdio.h>
 
-void fraction_reducing(int& num, int& denum){
-	int sign = 1;
-	if (num < 0){
-		sign = -1;
-	}
-	for (int i = 2; i <= (sign * num); ++i){
-		if (((sign * num) % i == 0) && (denum % i == 0)){
-			fraction_reducing( num /= i , denum /= i);
-		}
+static int gcd(int x, int y);
+
+void fraction_reducing(int& num, int& denom){
+	int gcd_value = gcd(num, denom);
+
+	if (gcd_value != 1){
+		num /= gcd_value;
+		denom /= gcd_value;
 	}
 }
 
@@ -41,7 +40,22 @@ void print_result(int n1, int dn1, int n2, int dn2, int n_res, int dn_res, char 
 	printf("(%d/%d) %c (%d/%d) = (%d/%d)\n", n1, dn1, action, n2, dn2, n_res, dn_res);
 }
 
+static int gcd(int x, int y) { //GCD by algorithm of Euclid
+	int max = x;
+	int min = y;
+	int rest = 1;
 
+	if (x<y) {
+		max = y;
+		min = x;
+	};
+
+	while ( (rest = max % min) !=0 ){
+		max = min;
+		min = rest;
+	};
+	return min;     		//when rest==0, then min is GCD of x and y
+}
 
 
 

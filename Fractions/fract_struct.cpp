@@ -1,17 +1,14 @@
 #include "fract_struct.h"
 #include <stdio.h>
 
+static int gcd(int x, int y);
+
 void fraction_reducing(fract& fr){
-	int sign = 1;
-	if (fr.numerator < 0){
-		sign = -1;
-	}
-	for (int i = 2; i <= (sign * fr.numerator); ++i){
-		if (((sign * fr.numerator) % i == 0) && (fr.denominator % i == 0)){
-			fr.numerator /= i;
-			fr.denominator /= i;
-			fraction_reducing(fr);
-		}
+	int gcd_value = gcd(fr.numerator, fr.denominator);
+
+	if (gcd_value != 1){
+		fr.numerator /= gcd_value;
+		fr.denominator /= gcd_value;
 	}
 }
 
@@ -40,21 +37,26 @@ void divide_fraction(const fract& lh, const fract& rh, fract& result){
 }
 
 void print_result(const fract& lh, const fract& rh, const fract& result, char action){
-//switch (action) {
-//case '+': add_fraction(lh, rh, result);
-//		  break;
-//case '-': substr_fraction(lh, rh, result);
-//		  break;
-//case '*': multipl_fraction(lh, rh, result);
-//		  break;
-//case '/': divide_fraction(lh, rh, result);
-//		  break;
-//}
 	printf("(%d/%d) %c (%d/%d) = (%d/%d)\n", lh.numerator, lh.denominator, action,
 											 rh.numerator, rh.denominator,
 											 result.numerator, result.denominator);
 }
 
+static int gcd(int x, int y) { //GCD by algorithm of Euclid
+	int max = x;
+	int min = y;
+	int rest = 1;
 
+	if (x<y) {
+		max = y;
+		min = x;
+	};
+
+	while ( (rest = max % min) !=0 ){
+		max = min;
+		min = rest;
+	};
+	return min;     		//when rest==0, then min is GCD of x and y
+}
 
 

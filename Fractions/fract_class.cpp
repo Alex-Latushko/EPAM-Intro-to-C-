@@ -1,20 +1,17 @@
 #include "fract_class.h"
 
+static int gcd(int x, int y);
+
 fraction::fraction(int x, int  y) : numerator(x), denominator(y){
 	fraction_reducing();
 }
 
 void fraction::fraction_reducing(){
-	int sign = 1;
-	if (numerator < 0){
-		sign = -1;
-	}
-	for (int i = 2; i <= (sign * numerator); ++i){
-		if (((sign * numerator) % i == 0) && (denominator % i == 0)){
-			numerator /= i;
-			denominator /= i;
-			fraction_reducing();
-		}
+	int gcd_value = gcd(numerator, denominator);
+
+	if (gcd_value != 1){
+		numerator /= gcd_value;
+		denominator /= gcd_value;
 	}
 }
 
@@ -67,10 +64,32 @@ int fraction::get_denominator() const{
 	return denominator;
 }
 
+void fraction::set_numerator(int x){
+	numerator = x;
+}
+void fraction::set_denominator(int x){
+	denominator = x;
+}
+
 std::ostream& operator<<(std::ostream& os, const fraction& fr){
 	os << "(" << fr.get_numerator() << "/" << fr.get_denominator() << ")";
 	return os;
 }
 
+static int gcd(int x, int y) { //GCD by algorithm of Euclid
+	int max = x;
+	int min = y;
+	int rest = 1;
 
+	if (x<y) {
+		max = y;
+		min = x;
+	};
+
+	while ( (rest = max % min) !=0 ){
+		max = min;
+		min = rest;
+	};
+	return min;     		//when rest==0, then min is GCD of x and y
+}
 
