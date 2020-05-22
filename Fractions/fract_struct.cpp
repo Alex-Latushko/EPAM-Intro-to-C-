@@ -4,7 +4,11 @@
 static int gcd(int x, int y);
 
 void fraction_reducing(fract& fr){
-	int gcd_value = gcd(fr.numerator, fr.denominator);
+	int sign = 1;
+	if (fr.numerator < 0){
+		sign = -1;
+	}
+	int gcd_value = gcd(sign * fr.numerator, fr.denominator);
 
 	if (gcd_value != 1){
 		fr.numerator /= gcd_value;

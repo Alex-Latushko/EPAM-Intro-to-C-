@@ -4,7 +4,11 @@
 static int gcd(int x, int y);
 
 void fraction_reducing(int& num, int& denom){
-	int gcd_value = gcd(num, denom);
+	int sign = 1;
+	if (num < 0){
+		sign = -1;
+	}
+	int gcd_value = gcd(sign * num, denom);
 
 	if (gcd_value != 1){
 		num /= gcd_value;

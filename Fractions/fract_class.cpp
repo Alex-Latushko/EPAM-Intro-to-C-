@@ -7,7 +7,11 @@ fraction::fraction(int x, int  y) : numerator(x), denominator(y){
 }
 
 void fraction::fraction_reducing(){
-	int gcd_value = gcd(numerator, denominator);
+	int sign = 1;
+	if (numerator < 0){
+		sign = -1;
+	}
+	int gcd_value = gcd(sign * numerator, denominator);
 
 	if (gcd_value != 1){
 		numerator /= gcd_value;
