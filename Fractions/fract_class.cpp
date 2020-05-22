@@ -3,6 +3,10 @@
 static int gcd(int x, int y);
 
 fraction::fraction(int x, int  y) : numerator(x), denominator(y){
+	if (denominator < 0) {
+		numerator *= -1;
+		denominator *= -1;
+	}
 	fraction_reducing();
 }
 
@@ -17,47 +21,6 @@ void fraction::fraction_reducing(){
 		numerator /= gcd_value;
 		denominator /= gcd_value;
 	}
-}
-
-fraction fraction::add_fraction(const fraction& rh) const{
-	return (fraction{numerator * rh.denominator + rh.numerator * denominator,
-					 denominator * rh.denominator});
-}
-
-fraction fraction::substr_fraction(const fraction& rh) const{
-	return(add_fraction(fraction{ - rh.numerator, rh.denominator}));
-}
-
-fraction fraction::multipl_fraction(const fraction& rh) const{
-	return ( fraction{numerator * rh.numerator,
-					  denominator * rh.denominator});
-}
-
-fraction fraction::divide_fraction(const fraction& rh) const{
-	int sign = 1;
-	if (rh.numerator < 0){
-		sign = -1;
-	}
-	return ( multipl_fraction( fraction{sign * rh.denominator, sign * rh.numerator}) );
-}
-
-void fraction::print_result(const fraction& rh, char action) const{
-	fraction result(1,1);
-	switch (action) {
-	case '+': result = add_fraction(rh);
-			  break;
-	case '-': result = substr_fraction(rh);
-			  break;
-	case '*': result = multipl_fraction(rh);
-			  break;
-	case '/': result = divide_fraction(rh);
-			  break;
-	}
-
-	std::cout << *this
-			  << " "<< action << " "
-			  << rh
-			  << " = " << result << std::endl;
 }
 
 int fraction::get_numerator() const{
@@ -97,3 +60,32 @@ static int gcd(int x, int y) { //GCD by algorithm of Euclid
 	return min;     		//when rest==0, then min is GCD of x and y
 }
 
+fraction fract_operation::add_fraction(const fraction& lh, const fraction& rh) const{
+	return (fraction{lh.get_numerator() * rh.get_denominator() + rh.get_numerator() * lh.get_denominator(),
+					 lh.get_denominator() * rh.get_denominator()});
+}
+
+fraction fract_operation::substr_fraction(const fraction& lh, const fraction& rh) const{
+	return(add_fraction(lh, fraction{ - rh.get_numerator(), rh.get_denominator()}));
+}
+
+fraction fract_operation::multipl_fraction(const fraction& lh, const fraction& rh) const{
+	return ( fraction{lh.get_numerator() * rh.get_numerator(),
+					  lh.get_denominator() * rh.get_denominator()});
+}
+
+fraction fract_operation::divide_fraction(const fraction& lh, const fraction& rh) const{
+	int sign = 1;
+	if (rh.get_numerator() < 0){
+		sign = -1;
+	}
+	return ( multipl_fraction( lh, fraction{sign * rh.get_denominator(), sign * rh.get_numerator()}) );
+}
+
+void fract_operation::print_result
+(const fraction& lh, const fraction& rh, const fraction& result, char action) const{
+	std::cout << lh
+			  << " "<< action << " "
+			  << rh
+			  << " = " << result << std::endl;
+}

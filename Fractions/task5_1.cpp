@@ -3,14 +3,19 @@
 #include "fract_struct.h"
 #include "fract_class.h"
 
+# define FIRST_NUMERATOR 6
+# define FIRST_DENOMINATOR 24
+# define SECOND_NUMERATOR -1
+# define SECOND_DENOMINATOR 3
+
 int main() {
 	{
 		printf("+++++Fractions with functions+++++\n");
-		int numerator1 = 6;
-		int denominator1 = 24 ;
+		int numerator1 = FIRST_NUMERATOR;
+		int denominator1 = FIRST_DENOMINATOR ;
 
-		int numerator2 = -1;
-		int denominator2 = 3;
+		int numerator2 = SECOND_NUMERATOR;
+		int denominator2 = SECOND_DENOMINATOR;
 
 		int numerator_res = 0;
 		int denominator_res = 1;
@@ -29,8 +34,8 @@ int main() {
 	}
 	{
 		printf("\n+++++Fractions with structures+++++\n");
-		struct fract fract_1 {6, 24};
-		struct fract fract_2 {-1, 3};
+		struct fract fract_1 {FIRST_NUMERATOR, FIRST_DENOMINATOR};
+		struct fract fract_2 {SECOND_NUMERATOR, SECOND_DENOMINATOR};
 		struct fract result;
 		add_fraction(fract_1, fract_2, result);
 		print_result(fract_1, fract_2, result, '+');
@@ -46,12 +51,21 @@ int main() {
 	}
 	{
 		printf("\n+++++Fractions with classes+++++\n");
-		fraction fraction_1(6, 24);
-		fraction fraction_2(-1, 3);
-		fraction_1.print_result(fraction_2, '+');
-		fraction_1.print_result(fraction_2, '-');
-		fraction_1.print_result(fraction_2, '*');
-		fraction_1.print_result(fraction_2, '/');
+		fraction fraction_1(FIRST_NUMERATOR, FIRST_DENOMINATOR);
+		fraction fraction_2(SECOND_NUMERATOR, SECOND_DENOMINATOR);
+		fraction result(1,1);
+		fract_operation op;
+		result = op.add_fraction(fraction_1, fraction_2);
+		op.print_result(fraction_1, fraction_2, result, '+');
+
+		result = op.substr_fraction(fraction_1, fraction_2);
+		op.print_result(fraction_1, fraction_2, result, '-');
+
+		result = op.multipl_fraction(fraction_1, fraction_2);
+		op.print_result(fraction_1, fraction_2, result, '*');
+
+		result = op.divide_fraction(fraction_1, fraction_2);
+		op.print_result(fraction_1, fraction_2, result, '/');
 	}
 	return 0;
 }
