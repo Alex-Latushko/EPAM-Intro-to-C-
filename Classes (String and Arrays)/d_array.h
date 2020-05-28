@@ -3,8 +3,8 @@
 
 class D_array{
 	private:
-	const int size = 0;
-	double* arr = NULL;
+	const int size;
+	double* arr;
 
 	public:
 	D_array(int x = 10);

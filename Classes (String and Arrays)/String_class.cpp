@@ -8,7 +8,7 @@ void String::set_str(const char str2[]){
 	}
 }
 
-char* String::get_str(void) const{
+const char* String::get_str(void) const{
 	return str;
 }
 

@@ -9,7 +9,7 @@ class String{
 
 	public:
 	void set_str(const char* str2);
-	char* get_str(void) const;
+	const char* get_str(void) const;
 	int len() const;
 	void show() const;
 

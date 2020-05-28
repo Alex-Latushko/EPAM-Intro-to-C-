@@ -4,6 +4,9 @@
 
 int main() {
 
+	D_array arr_test;
+	D_array arr2_test(arr_test);
+
 	D_array arr;
 	arr.show();
 
