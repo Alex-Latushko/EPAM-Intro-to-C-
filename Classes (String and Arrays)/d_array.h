@@ -10,9 +10,11 @@ class D_array{
 	D_array(int x = 10);
 	D_array(const D_array& obj);
 
-	void set_elem(int index, double value);
-	double get_elem(int index) const;
+	//void set_elem(int index, double value);
+	//double get_elem(int index) const;
 	int get_size() const;
+	double& operator[](int index);
+	const double& operator[](int index) const;
 
 	void show() const;
 

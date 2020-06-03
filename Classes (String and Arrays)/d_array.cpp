@@ -10,22 +10,34 @@ D_array::D_array(const D_array& obj): size(obj.size){
 		memcpy(arr, obj.arr, sizeof(double) * size);
 	}
 }
+//
+//void D_array::set_elem(int index, double value){
+//	if (index >=0 && index < size){
+//		*(arr + index) = value;
+//	} else {
+//		std::cout << "Index out of range!" << std::endl;
+//		exit(1);
+//	}
+//}
+//
+//double D_array::get_elem(int index) const{
+//	if (index >= size || index < 0 ){
+//		std::cout << "Index out of range" << std::endl;
+//		return 0;
+//	}
+//	return *(arr+index);
+//}
 
-void D_array::set_elem(int index, double value){
-	if (index >=0 && index < size){
-		*(arr + index) = value;
-	} else {
+double& D_array::operator[](int index){
+	if (index <0 || index >= size){
 		std::cout << "Index out of range!" << std::endl;
 		exit(1);
 	}
+	return *(arr + index);
 }
 
-double D_array::get_elem(int index) const{
-	if (index >= size || index < 0 ){
-		std::cout << "Index out of range" << std::endl;
-		return 0;
-	}
-	return *(arr+index);
+const double& D_array::operator[](int index) const{
+	return arr[index];
 }
 
 int D_array::get_size() const{
@@ -35,7 +47,7 @@ int D_array::get_size() const{
 void D_array::show() const {
 	if (1){
 		for(int i = 0; i < size; ++i){
-			std::cout << "[" << i << "] = " << *(arr+i) << std::endl;
+			std::cout << "[" << i << "] = " << arr[i] << std::endl;
 		}
 	}
 }
@@ -43,7 +55,7 @@ void D_array::show() const {
 void D_array::reverse(){
 	D_array temp_arr(*this);
 	for (int i = 0; i < size; i++){
-		*(arr + i) = temp_arr.get_elem(temp_arr.size - i - 1);
+		*(arr + i) = temp_arr[(temp_arr.size - i - 1)];
 	}
 }
 
